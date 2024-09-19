@@ -1,0 +1,122 @@
+body {
+    padding: 0;
+    margin: 0 ;
+    font-family: 'Microsoft JhengHei';
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #bbdef0;
+}
+.listpaper {
+    width: 300px;
+    height: 80vh;
+    background-color: #fffcee;
+    border: 1px solid #ddd;
+    padding: 16px;
+    box-shadow: 0 0 10px #77b8d8;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: center;
+    font-family: "Font Awesome 6 Free";
+    letter-spacing: 2px;
+}
+.todoBox {
+    flex: 1;
+    overflow-y: auto;
+}
+.note {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    word-break: break-word;
+    padding: 5px 0 10px 0;
+    border: solid 1px #fffcee;
+    border-bottom-color: #eeb1d5;
+}
+.checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    cursor: pointer;
+    top: 1px;
+    background: url(../img/circle-regular.svg);
+}
+.checkbox.checked {
+    background: url(../img/circle-check-solid.svg);
+}
+.note span{
+    width: 80%;
+    
+}
+.delBtn {
+    background-color: transparent;
+    border: none;
+    color: #f089c5;
+    cursor: pointer;
+}
+.delBtn:hover {
+    color: #e60073;
+    transition: 0.3s;
+}
+.delBtn i {
+    font-size: 18px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f3f1e4; 
+    border-radius: 15px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #e6e2cd; 
+    border-radius: 15px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #cac7b5; 
+}
+
+
+.inputBox {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+.inputBox input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 8px;
+    border: solid 1px #eeb1d5;
+    border-radius: 5px;
+}
+.inputBox input:focus {
+    outline-color: #f089c5;
+}
+.inputBox button {
+    padding: 7px 16px;
+    background-color: #eeb1d5;
+    border-radius: 5px;
+    border: solid 1px #eeb1d5;
+    font-weight: bolder;
+    cursor: pointer;
+    color: #fff;
+}
+.inputBox button:hover {
+    background-color: #f089c5;
+    border: solid 1px #f089c5;
+    transition: 0.6s ease;
+}

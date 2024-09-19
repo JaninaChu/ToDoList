@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/e4788a2551.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app" class="listpaper">
+    <div class="title">To do list</div>
+    <div class="todoBox">
+      <div v-for="(noteTxt, index) in Notes" :key="index" class="note">
+        <div :class="['checkbox', {checked: noteTxt.completed}]" @click="toggleNote(index)"></div>
+        <span>{{ noteTxt.text }}</span>
+        <button class="delBtn" @click="removeNote(index)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
+    <div class="inputBox">
+      <input v-model="newNote" placeholder="輸入代辦事項">
+      <button @click="addNote">送出</button>
+    </div>
+  </div>
+
+  <!-- 引入 Vue 和 Vuex -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+
+  <script>
+    // Vuex store
+    const store = new Vuex.Store({
+      state: {
+        Notes: []
+      },
+      mutations: {
+        addNote(state, text) {
+          state.Notes.push({ text: text, completed: false });
+        },
+        toggleNote(state, index) {
+          state.Notes[index].completed = !state.Notes[index].completed;
+        },
+        removeNote(state, index) {
+          state.Notes.splice(index, 1);
+        }
+      },
+      actions: {
+        addNote({ commit }, text) {
+          commit('addNote', text);
+        },
+        toggleNote({ commit }, index) {
+          commit('toggleNote', index);
+        },
+        removeNote({ commit }, index) {
+          commit('removeNote', index);
+        }
+      }
+    });
+
+    // Vue instance
+    new Vue({
+      el: '#app',
+      store: store,
+      data: {
+        newNote: ''
+      },
+      methods: {
+        addNote() {
+          if (this.newNote.trim()) {
+            this.$store.dispatch('addNote', this.newNote.trim());
+            this.newNote = '';
+          }
+        },
+        toggleNote(index) {
+          this.$store.dispatch('toggleNote', index);
+        },
+        removeNote(index) {
+          this.$store.dispatch('removeNote', index); 
+        }
+      },
+      computed: {
+        Notes() {
+          return this.$store.state.Notes;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
